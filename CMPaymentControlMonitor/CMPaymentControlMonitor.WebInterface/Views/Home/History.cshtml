@@ -1,0 +1,96 @@
+﻿@model ICollection<Alert>
+
+<div id="history-container" class="container-fluid">
+    
+    <div class="text-center">
+        <h1>History </h1>
+        <hr />
+    </div>
+
+    @* card with filter options *@
+    <div id="history-content-container" class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2">
+                <div id="history-filter" class="d-none d-xl-block form-group elevated-card">
+                    <div class="form-row">
+                        <h5 id="HistoryFilter">Filter Options</h5>
+                    </div>
+                    @{List<String> CheckNames = new List<String> { "Drugs", "FATF", "72 hours & 15.000", "Gambling", "72 hours & 100.000" }; }
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        <div class="form-check form-row">
+                            <label>
+                                <input type="checkbox" value="a value" checked onclick="filterFunction(@(i+1))">
+                                <span class="label check ">
+                                    @CheckNames[i] Check
+                                </span>
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* small screen content, hidden on larger screens *@
+            <div class="pos-f-t d-xl-none">
+                <button  id="filterBtn"class="navbar-toggler btn btn-icon button-icon" type="button" data-toggle="collapse" data-target="#filterToggle" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="cm-icon cm-icon cm-icon-filter"></span>
+                </button>
+
+                <div class="collapse" id="filterToggle">
+                    <div id="history-filter" class="form-group col-sm-12">
+                        <div class="form-row">
+                            <h5 id="HistoryFilter">Filter Options</h5>
+                        </div>
+                        @{List<String> CheckNamesMenu = new List<String> { "Drugs", "FATF", "72 hours & 15.000", "Gambling", "72 hours & 100.000" }; }
+                        @for (int i = 0; i < 5; i++)
+                        {
+                            <div class="form-check check-option">
+                                <label>
+                                    <input type="checkbox" value="a value" checked onclick="filterFunction(@(i+1))">
+                                    <span class="label check ">
+                                        @CheckNamesMenu[i] Check
+                                    </span>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+            @*table with alerts in history *@
+            <div id="history-table" class="col-sm-12 col-lg-10 table-striped elevated-card">
+                <table class="table table-responsive" id="check-table-history">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Order Amount</th>
+                            <th>Comment</th>
+                            <th>Created On</th>
+                            <th>Check Name</th>
+                            <th>CheckID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int counter = 1;}
+                        @{ foreach (var a in Model)
+                            {
+                                {
+                        <tr class="clickable" onclick="location.href = '@(Url.Action("TransactionDetailed", new { Id = a.Id }))'">
+                            <td>@counter</td>
+                            <td>@($"{a.PaymentId.Order.Amount:N2}") @a.PaymentId.Order.Currency</td>
+                            <td>@a.Comment</td>
+                            <td>@a.PaymentId.PaymentCreatedOn</td>
+                            <td>@a.Check.Name</td>
+                            <td>@a.Check.Id</td>
+                        </tr>
+                                }
+                                counter++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

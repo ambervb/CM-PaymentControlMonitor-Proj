@@ -1,0 +1,54 @@
+﻿@model AlertWithPayments
+@* calculate conversion to euros *@
+@{ decimal totalAmount = 0;}
+@foreach (Payment p in Model.Payments)
+{
+    totalAmount += p.Order.Amount * (decimal)p.Order.CurrencyNavigation.ExchangeRateToEuro;
+}
+
+<h3 class="border-top border-offset">Total amount in euros: €@($"{totalAmount:N2}") </h3>
+<h3>Accountmanager: @Model?.Alert?.PaymentId.Order.Merchant.Organization.AccountManagerName</h3>
+<br />
+<h4 class="border-top border-offset">Merchant:</h4>
+
+@{Merchant merchant = Model.Alert?.PaymentId.Order.Merchant;}
+
+<h3 >Name: @merchant?.Name</h3>
+<h3>Merchant code: @merchant?.MerchantCode</h3>
+<h3>Country: <span class="cm-flag cm-flag-@merchant?.Country" aria-hidden="true"></span> @merchant?.Country</h3>
+<h3>City: @(merchant?.City ?? "City unknown")</h3>
+<br />
+
+<h4 class="border-top border-offset">Orders: </h4>
+<h3>Total number of orders: @(Model.Payments.Select(p => p.Order.Id).Distinct().Count())</h3>
+
+@* Show all Separate orders *@
+@{ int counter = 1;}
+<table class="table table-striped table-hover table-responsive-md table-responsive-sm col-lg-12">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Buyer name</th>
+            <th>Buyer country</th>
+            <th>Amount in original currency</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Payment p in @Model.Payments)
+        {
+            <tr>
+                <td>@counter</td>
+                <td>@p.Order.BuyerName</td>
+                <td><span class="cm-flag cm-flag-@p.Order.BuyerBillingCountryNavigation.IsoCode" aria-hidden="true"></span> @p.Order.BuyerBillingCountry</td>
+                <td>@($"{@p.Order.Amount:N2}") @p.Order.Currency</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td colspan="5">@(p.Order.Description ?? "No description available")</td>
+            </tr>
+
+            counter++;
+        }
+    </tbody>
+</table>

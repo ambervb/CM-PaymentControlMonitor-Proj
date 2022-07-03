@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <script src="/lib/jquery/dist/jquery.js"></script>
+    <link rel="stylesheet"
+          href="/lib/bootstrap/dist/css/bootstrap.css" />
+    <script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="https://aurora.cmtelecom.com/css/v1/aurora.css" rel="stylesheet">
+    <link href="https://platformheader.cmtelecom.com/css/platform.aurora.v2.min.css" rel="stylesheet">
+    <script src="https://aurora-components.cmtelecom.com/js/webcomponent.min.js" type="text/javascript"></script>
+    <script src="https://aurora-components.cmtelecom.com/js/components/cm-icon.min.js" type="text/javascript"></script>
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/animate.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light">
+        <div class="align-center">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                if (!Html.ViewContext.View.Path.Contains("Dashboard"))
+                {
+                    <!--back button, where your biggest problem is an off-center icon-->
+                    <button class="btn btn-icon button-icon no-margin" onclick="window.history.back()">
+                        <span class="cm-icon cm-icon-undo" aria-hidden="true"></span>
+                    </button>
+                }
+
+                <!-- Brand -->
+                <a asp-action="Dashboard" asp-controller="Home" class="navbar-brand">
+                    <img src="https://cdn.cm.com/cm/apple-touch-icon.png" class="nav-logo" />
+                </a>
+            }
+            else
+            {
+                <img src="https://cdn.cm.com/cm/apple-touch-icon.png" class="nav-logo" />
+            }
+
+            <span class="navbar-text">
+                Payment control monitor
+            </span>
+        </div>
+
+        <!-- Toggler/collapsibe Button -->
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <button class="navbar-toggler btn btn-icon button-icon" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="cm-icon cm-icon-menu" aria-hidden="true"></span>
+            </button>
+        }
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <ul class="navbar-nav nav-centered-items">
+                    <li class="nav-item align-center">
+                        <a asp-action="Dashboard" asp-controller="Home" class="nav-link">Dashboard</a>
+                    </li>
+                    <li class="nav-item align-center">
+                        <a asp-action="History" asp-controller="Home" class="nav-link">History</a>
+                    </li>
+                    <li class="nav-item align-center">
+                        <a asp-action="LogOut" asp-controller="Account" class="nav-link logoutLink">Log out</a>
+                    </li>
+                </ul>
+
+                <!-- Log out button-->
+                <ul class="navbar-nav ml-auto logoutBtn">
+                    <li>
+                        <a asp-action="LogOut" asp-controller="Account" class="logoutBtn nav-item btn btn-primary button-right">Log out</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </nav>
+
+<div class="margin-top-100px">
+    @RenderBody()
+</div>
+<audio id="audio" src="~/Easter eggs/Hornbach/hornbach.mp3"></audio>
+<footer></footer>
+<script src="/js/JavaScript.js"></script>
+<script src="~/Easter eggs/EasterEggKeypress.js"></script>
+<script src="~/Easter eggs/Hackerman/hackerman.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+﻿@model Alert
+    
+
+@{var actions = new Dictionary<int, string>{
+      {1, "notify account manager and compliance manager. Block payment" },
+      {2, "notify account manager and compliance manager should investigate to raise report with FIU. Hold payout" },
+      {3, "notify account manager and compliance manager should raise report with FIU" },
+      {4, "notify account manager and compliance manager. Block payment"},
+      {5, "inform account manager" }
+   };
+  }
+
+@* Basic detail information all detail pages have in common *@
+<div id="detail-page" class="col-sm-6 col-md-8 col-lg-8 elevated-card">
+    <br />
+    <h1 class="header-overflow align-center">@Model?.Check?.Name</h1>
+
+    <h2>Required action: @actions[@Model.Check.Id]</h2>
+    @* view component which decides what partial view to use*@
+
+    @await Component.InvokeAsync("DetailCheckComponent", Model)
+    <br />
+
+    @* Comment field section*@
+    <form asp-action="ResolveAlert" asp-controller="Home" method="post">
+        <div class="form-group">
+            <div class="form-row ">
+                <div class="form-input comment-field">
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <span class="error-text" asp-validation-for="@Model.Comment"></span>
+                    <textarea class="form-control comment-field"
+                              data-component="cm-charactercount"
+                              data-options='{"maxLength":150, "errorMsg": "Maximum length exceeded!"}'
+                              type="text"
+                              placeholder="comment"
+                              value="@Model.Comment"
+                              id="hackermanCommentField"
+                              asp-for="@Model.Comment"></textarea>
+                    @*<label>Message</label>*@
+
+                </div>
+            </div>
+
+        </div>
+        @if (!Model.Resolved)
+        {
+            <button class="btn btn-primary button-right" type="submit">resolve</button>
+        }
+        else
+        {
+            <button class="btn btn-primary button-right" type="submit">save</button>
+        }
+        @*this is to fix the bug where the float right pushes a button out of the div*@
+    </form>
+    <br /><br />
+    <br /><br />
+
+</div>
+
+<script>
+    $("#hackermanCommentField").change(function () {
+        checkCommentFieldValue();
+    });
+</script>

@@ -1,0 +1,75 @@
+﻿@model ICollection<ControlCheck>
+@{
+    ViewData["Title"] = "Dashboard";
+    int alertCount = 0;
+}
+
+<div class="container">
+    @* Title header *@
+    <div class="text-center">
+        <h1>Dashboard</h1>
+        <hr/>
+
+        @* Grid view for all the controls. This grid has 3 columns *@
+        <div class="container">
+            <div class="row">
+                @{
+                    var index = 1;
+                }
+                @foreach (var controlCheck in Model)
+                {
+                    <div class="col-sm">
+                        <div class="card margin-bottom-15px elevated-card no-padding no-indent dashboard-card" data-card-failed-transactions="@controlCheck.Alerts.Where(a => a.Resolved == false).ToList().Count">
+
+                            <div class="card-header">
+                                @controlCheck.Name
+                                @{ alertCount = controlCheck.Alerts.Where(a => a.Resolved == false).ToList().Count;}
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <b>@alertCount</b>
+                                </h4>
+                                @if (alertCount != 1)
+                                {
+                                    <p class="card-text">new fails</p>
+                                }
+                                else
+                                {
+                                    <p class="card-text">new fail</p>
+                                }
+
+                                @if (alertCount > 0)
+                                {
+                                    <a asp-action="FailedTransactionListView" asp-route-Id="@controlCheck.Id" class="btn btn-primary card-button">View</a>
+                                }
+                                else
+                                {
+                                    <a onclick="false" disabled="disabled" class="btn btn-primary card-button">View</a>
+                                }
+                            </div>
+                        </div >
+                    </div>
+                    index++;
+                }
+
+                <div class="col-sm">
+                    <div class="card margin-bottom-15px elevated-card no-padding no-indent card-with-history dashboard-card">
+
+                        <div class="card-header ">
+                            History
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">View the alerts from the past</p>
+                            <h4 class="card-title">
+                                <br/>
+                            </h4>
+                            <a asp-action="History" class="btn btn-primary card-button">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

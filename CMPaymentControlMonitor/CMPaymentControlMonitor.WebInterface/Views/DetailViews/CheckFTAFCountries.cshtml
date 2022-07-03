@@ -1,0 +1,30 @@
+﻿@model Alert
+
+@{
+    var billingCountry = Model?.PaymentId.Order.BuyerBillingCountry;
+    var shippingCountry = Model?.PaymentId.Order.BuyerShippingCountry;
+    var merchantCountry = Model?.PaymentId.Order.Merchant.Country;
+}
+
+<br />
+<!-- Buyer info -->
+<h2 class="border-top border-offset">Buyer: @Model?.PaymentId.Order.BuyerName</h2>
+<h3>Billing country of the buyer: <span class="cm-flag cm-flag-@billingCountry" aria-hidden="true"></span>@billingCountry</h3>
+<h3>Shipping country of the buyer: <span class="cm-flag cm-flag-@shippingCountry" aria-hidden="true"></span>@shippingCountry</h3>
+<br />
+
+<!-- Merchant info -->
+<h2 class="border-top border-offset">Merchant: @Model?.PaymentId.Order.Merchant.Name</h2>
+<h3>
+    Country and city: <span class="cm-flag cm-flag-@merchantCountry" aria-hidden="true"></span>
+    @Model?.PaymentId?.Order?.Merchant?.Country, @(Model?.PaymentId?.Order?.Merchant?.City ?? "City unknown")
+</h3>
+<h3>MCC: @Model?.PaymentId?.Order?.Merchant?.MerchantCategoryCodeNavigation?.Mcc</h3>
+<h3>Associated account manager: @Model?.PaymentId?.Order?.Merchant?.Organization?.AccountManagerName</h3>
+<br />
+
+<!-- Other order information -->
+<h3 class="border-top border-offset">Amount: @($"{Model?.PaymentId?.MerchantAmount:N2}") @Model?.PaymentId?.Order?.Currency</h3>
+
+<h3 class="offset">Description: @(Model?.PaymentId?.Order?.Description ?? "No description available")</h3>
+<br />

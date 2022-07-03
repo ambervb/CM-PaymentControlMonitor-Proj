@@ -1,0 +1,325 @@
+﻿
+
+.margin-bottom-15px {
+    margin-bottom: 15px !important;
+}
+
+.margin-top-100px {
+    margin-top: 100px;
+}
+
+.elevated-card {
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    border-radius: 20px;
+    text-indent: 3%;
+    height:auto;
+}
+
+.dashboard-card {
+    position: relative;
+    height: 200px;
+}
+
+.card-body{
+    min-width: 220px;
+    margin-bottom: 40px;
+}
+
+.card-text {
+}
+
+.card-button {
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-bottom: 10px;
+}
+
+.comment-field {
+    width: 95%;
+    margin: auto;
+}
+
+.button-right {    
+    float:right;
+    clear:both;
+    margin: 10px;
+}
+
+.row {
+    margin: 0;
+}
+
+.card-with-failed-transactions {
+    background-color: #F03A47 !important;
+    color: white !important;
+}
+
+.header-overflow {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    text-align-last: left;
+}
+
+.button-small {
+    margin-left : 10px;
+}
+
+.button-icon {
+    margin-left: 40px;
+    padding: 5px;
+}
+
+
+.card-with-history {
+    background-color: #3C4859 !important;
+    color: white;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-indent {
+    text-indent: 0;
+}
+
+.nav-logo {
+    width: 48px
+}
+
+.navbar {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: white;
+}
+
+.logoutBtn {
+    visibility: hidden;
+    height: 0;
+}
+
+.logoutLink {
+    visibility: visible;
+    width: auto;
+}
+
+.nav-link {
+    vertical-align: middle;
+}
+
+.align-center {
+    display: flex;
+    align-items: center;
+
+}
+
+@media screen and (min-width: 768px) {
+    .nav-centered-items {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .logoutBtn {
+        visibility: visible;
+        height: auto;
+    }
+
+    .logoutLink {
+        visibility: hidden;
+        width: 0;
+    }
+}
+
+/*history page*/
+.clickable {
+    cursor: pointer !important;
+}
+
+#history-filter .check{
+    display: inline-block;
+    white-space: normal;
+    overflow:visible;
+    overflow-wrap: break-word;
+ 
+}
+#history-content-container, #check-table-history{
+    display: table;
+}
+#history-filter.elevated-card {
+    padding: 9%;
+    text-indent: unset;
+  
+}
+
+.check-option.form-check{
+    display: inline !important;
+}
+
+/*#history-filter.form-check{
+    display: inherit;
+    padding-left: unset;
+}*/
+#history-container {
+    padding-left: 7%;
+    padding-right: 7%;
+}
+
+#history-table.elevated-card {
+    text-align: center;
+    text-indent: 0%;
+}
+
+
+
+
+#filterBtn{
+    margin-bottom: 20%;
+    margin-left: 0px;
+}
+
+.text-align-top-right-alertlist {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: black;
+}
+
+.black-text {
+    color: black;
+}
+
+.text-align-bottom-alertlist {
+    margin-top: 5px;
+    padding-bottom: 5px;
+    color: black;
+}
+
+.content-card-list {
+    padding-top: 15px;
+}
+
+.header-block {
+    margin-bottom: 20px;
+}
+
+.grayscale {
+    filter: grayscale(100%);
+}
+
+.link-passive {
+    background: url("../Easter eggs/LoginMiniGame/link-passive.png");
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+}
+
+.link-attack {
+    background: url("../Easter eggs/LoginMiniGame/link-attack.png");
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+}
+
+.link-game-over {
+    background: url("../Easter eggs/LoginMiniGame/link-game-over.png");
+    background-size: 100%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 30%;
+    left: 70%;
+}
+
+#game-over {
+    display: none;
+    background: url("../Easter eggs/LoginMiniGame/game-over.jpg");
+    background-size: 100%;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.heart-1 {
+    content: "";
+    width: 40px;
+    height: 30px;
+    background: url("../Easter eggs/LoginMiniGame/pixelHeart.png") no-repeat;
+    background-size: 100%;
+    top: 10px;
+    right: 65px;
+    position: absolute;
+    display: inline-block;
+}
+
+.heart-2 {
+    content: "";
+    width: 40px;
+    height: 30px;
+    background: url("../Easter eggs/LoginMiniGame/pixelHeart.png") no-repeat;
+    background-size: 100%;
+    top: 10px;
+    right: 35px;
+    position: absolute;
+    display: inline-block;
+}
+
+.heart-3 {
+    content: "";
+    width: 40px;
+    height: 30px;
+    background: url("../Easter eggs/LoginMiniGame/pixelHeart.png") no-repeat;
+    background-size: 100%;
+    top: 10px;
+    right: 5px;
+    position: absolute;
+    display: inline-block;
+}
+
+.border-offset{
+    padding-top:5px;
+}
+
+.resize-group-picture {
+    width: 70%;
+}
+
+/*gif easter egg*/
+#gif-card.elevated-card{
+    padding: 2%;
+    text-indent:unset;
+
+}
+
+
+#detail-page.elevated-card{
+    text-indent: 0%;
+}
+
+#transaction-list-card.content-card-list{
+    text-indent: 0% !important;
+    padding-left: 3% !important;
+}
+}
+
+.error-text {
+    color: red;
+}

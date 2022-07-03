@@ -1,0 +1,23 @@
+﻿@model Alert
+
+<br />
+<h2 class="border-top border-offset">Buyer: @Model?.PaymentId.Order.BuyerName</h2>
+<h3>Country Billing of the buyer: <span class="cm-flag cm-flag-@Model?.PaymentId.Order.BuyerBillingCountry" aria-hidden="true"></span>
+    @Model?.PaymentId.Order.BuyerBillingCountry</h3>
+<h3>
+    Country Shipping of the buyer: <span class="cm-flag cm-flag-@Model?.PaymentId.Order.BuyerShippingCountry" aria-hidden="true"></span>
+    @Model.PaymentId.Order.BuyerShippingCountry
+</h3>
+<br />
+<h2 class="border-top border-offset">Merchant: @Model?.PaymentId.Order.Merchant.Name</h2>
+<h3>Country and city: <span class="cm-flag cm-flag-@Model?.PaymentId.Order.Merchant.Country" aria-hidden="true"></span>
+    @Model.PaymentId.Order.Merchant.Country, @(Model.PaymentId.Order.Merchant.City ?? "City unknown")</h3>
+<h3>MCC: @Model.PaymentId.Order.Merchant.MerchantCategoryCodeNavigation.Mcc</h3>
+
+<h3 class="border-offset">Description: @(Model?.PaymentId?.Order.Description ?? "No description available")</h3>
+<br/>
+
+<h2 class="border-top border-offset">Payment: @Model?.PaymentId?.Status</h2>
+<h3>Amount: @($"{Model?.PaymentId?.MerchantAmount:N2}") @Model?.PaymentId.Order.Currency </h3>
+<h3>Method: @(Model?.PaymentId?.PaymentMethodNavigationId ?? "Unknown")</h3>
+<br />

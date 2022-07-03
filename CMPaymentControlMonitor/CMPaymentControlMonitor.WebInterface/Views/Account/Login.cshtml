@@ -1,0 +1,40 @@
+﻿@model CMPaymentControlMonitor.WebInterface.ViewModels.LoginModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+<div class="row">
+    <span id="link-figure"></span>
+    <span id="game-over"></span>
+    <div class="col-10 col-md-6 col-lg-6 col-xl-4 elevated-card" id="loginCard">
+        <br/>
+        <div class="header-block">
+            <h1 class="">Sign in</h1>
+            <span class=""></span>
+            <span class=""></span>
+            <span class=""></span>
+        </div>
+
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <input type="hidden" asp-for="ReturnUrl"/>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="form-input comment-field">
+                        <div><span asp-validation-for="Username" class="text-danger"></span></div>
+                        <input asp-for="Username" type="text" class="form-control" id="usernameInput" placeholder="Username">
+                        <label for="usernameInput">Username</label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-input comment-field">
+                        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                        <input asp-for="Password" type="password" class="form-control" id="passwordInput" placeholder="Password">
+                        <label for="passwordInput">Password</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary button-right">Sign in</button>
+                <br/><br/><br/><br/>
+            </div>
+        </form>
+    </div>
+</div>

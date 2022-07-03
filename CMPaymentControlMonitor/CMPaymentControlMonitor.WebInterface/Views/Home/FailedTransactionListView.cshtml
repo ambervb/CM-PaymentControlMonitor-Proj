@@ -1,0 +1,32 @@
+﻿@model ControlCheck
+@{
+    ViewData["Title"] = "FailedTransactionListView";
+}
+
+<div class="container text-center">
+    <h1>@Model.Name</h1>
+    <h3>@Model.Description</h3>
+    <h2>@Model.Alerts.Where(a => a.Resolved == false).ToList().Count failed</h2>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="list-group col-10">
+            @foreach (var alert in Model.Alerts)
+            {
+                <a asp-action="TransactionDetailed" asp-route-id="@alert.Id " class="text-left  margin-bottom-15px">
+                    <div class=" elevated-card">
+                        <h3 id="transaction-list-card" class="content-card-list">Created on @alert?.PaymentId?.PaymentCreatedOn</h3>
+                        <p class="black-text">Status: @alert?.PaymentId?.Status </p>
+                        <p class="black-text">Buyer: @alert?.PaymentId?.Order?.BuyerName</p>
+                        <p class="black-text">Seller: @alert?.PaymentId?.Order?.Merchant?.Name</p>
+
+
+                        <p class="text-align-bottom-alertlist"></p>
+
+                    </div>
+                </a>
+            }
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
